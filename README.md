@@ -3,7 +3,7 @@ Welcome to GROUP 3 💞
 
 Overview
 
-DetecTive is an advanced quality control system designed to identify and rectify errors in the bottled water production industry, with a specific focus on Pepsi bottle production. This project is developed as part of the CPV301 course.
+Detective is an advanced quality control system designed to identify and rectify errors in the bottled water production industry, with a specific focus on Pepsi bottle production. This project is developed as part of the DPL302m course.
 
 The Team
 
