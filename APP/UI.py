@@ -1,12 +1,13 @@
 from library import *
 from AI import CHECK_BOTTLE_AI, CHECK_WATER_LEVEL_AI, CHECK_LABEL_AI
 from utils import *
-
+import tensorrt as trt
+import modules.utils as utils
+from modules.autobackend import AutoBackend
 
 CLEAN_CSV_BOTTLE()
 CLEAN_CSV_WATER_LEVEL()
 CLEAN_CSV_LEVEL()
-
 
 pygame.init()
 
@@ -23,13 +24,13 @@ font = pygame.font.Font(None, 36)
 border_radius_button = 30
 
 # Thiết lập camera 1
-camera_1 = cv2.VideoCapture(0)
+camera_1 = cv2.VideoCapture("vi.mp4")
 
 # Thiết lập camera 2
-camera_2 = cv2.VideoCapture(1)
+camera_2 = cv2.VideoCapture("vi.mp4")
 
 # Thiết lập camera 3
-camera_3 = cv2.VideoCapture(2)
+camera_3 = cv2.VideoCapture("vi.mp4")
 
 #Logo ))
 logo_fpt_path = os.path.join("APP/image_set/logofptuniversity.png")
@@ -184,7 +185,10 @@ while running:
                     
                     button_start_color = (0,128,0)  # Màu xanh
                     button_start_text = font.render("START", True, (255, 255, 255))
-                
+
+                    status_light_color_camera_1 = (255,0,0)
+                    status_light_color_camera_2 = (255,0,0)
+                    status_light_color_camera_3 = (255,0,0)
                 else:
                     is_started = True
                     
@@ -194,7 +198,11 @@ while running:
                     
                     button_start_color = (255, 0, 0)  # Màu đỏ
                     button_start_text = font.render("  END", True, (255, 255, 255))   
-                     
+                    
+                    status_light_color_camera_1 = (0, 255, 0)
+                    status_light_color_camera_2 = (0, 255, 0)
+                    status_light_color_camera_3 = (0, 255, 0)
+                    
             if switch_on_rect_box_camera_1.collidepoint(event.pos):
                 ACTIVE_AI_camera_1 = True
                 status_light_color_camera_1 = (0, 255, 0)
@@ -223,11 +231,7 @@ while running:
     # Vẽ nền trắng
     screen.fill((192,192,192))
     
-    ret_1, frame_1 = camera_1.read()  # Camera frame to Check bottle
     
-    ret_2, frame_2 = camera_2.read()  # Camera frame to Check water level
-    
-    ret_3, frame_3 = camera_3.read()  # Camera frame to Check label
 
     pygame.draw.rect(screen, button_start_color, button_start_rect, border_radius = 30)
     screen.blit(button_start_text, text_start_rect)
@@ -279,7 +283,15 @@ while running:
     
     pygame.draw.rect(screen, status_light_color_camera_3, status_light_rect_camera_3, border_radius = 30)
 
-
+    # Bắt đầu tính toán thời gian để đo FPS
+    start_time_1 = time.time()
+    ret_1, frame_1 = camera_1.read()  # Camera frame to Check bottle
+    
+    start_time_1 = time.time()
+    ret_2, frame_2 = camera_2.read()  # Camera frame to Check water level
+    
+    start_time_3 = time.time()
+    ret_3, frame_3 = camera_3.read()  # Camera frame to Check label
 
 # Quản lí frame 1 ---------------------------------------------------------------------------------------         
     if ret_1:
@@ -287,7 +299,7 @@ while running:
         # The video uses BGR colors and PyGame needs RGB
         frame_1 = cv2.cvtColor(frame_1, cv2.COLOR_BGR2RGB)
         if ACTIVE_AI_camera_1 == True:
-            frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1)
+            frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1)
         
         # Resize frame to show it on UI
         frame_1 = cv2.resize(frame_1, (camera_height, camera_width))
@@ -319,8 +331,14 @@ while running:
         frame_2 = cv2.cvtColor(frame_2, cv2.COLOR_BGR2RGB)
         
         if ACTIVE_AI_camera_2 == True:
-            frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2)
-
+            frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1)
+            print(ID_DEFAULT_2, ERROR_DEFAULT_2)
+            if (ID_DEFAULT_2 != "") and (ERROR_DEFAULT_2 != ""):
+                id_info_error_text_2 = font.render(str(ID_DEFAULT_2), True, id_info_color_2)
+                if ERROR_DEFAULT_2 == "GOOD":
+                    info_error_text_2 = font.render("GOOD", True, (0,200,0))
+                elif ERROR_DEFAULT_2 == "ERROR":
+                    info_error_text_2 = font.render("ERROR", True, (200,0,0))
         # Resize frame to show it on UI
         frame_2 = cv2.resize(frame_2, (camera_height, camera_width))      
         #for some reasons the frames appeared inverted
@@ -329,13 +347,6 @@ while running:
         frame_2 = cv2.flip(frame_2, 1)
         frame_2 = cv2.rotate(frame_2, cv2.ROTATE_90_COUNTERCLOCKWISE)
         frame_2 = pygame.surfarray.make_surface(frame_2)
-
-    # if (ID_DEFAULT_2 != "") and (ERROR_DEFAULT_2 != ""):
-    #     id_info_error_text_2 = font.render(ID_DEFAULT_2, True, id_info_color_2)
-    #     if ERROR_DEFAULT_2 == "GOOD":
-    #         info_error_text_2 = font.render("GOOD", True, (0,200,0))
-    #     else:
-    #         info_error_text_2 = font.render("ERROR", True, (200,0,0))
 
 
     pygame.draw.rect(screen, (255,255,255), square_rect_2)
@@ -352,7 +363,13 @@ while running:
         
         # Pass the frame and the AI function to output a new frame containing predictions about the object in the frame
         if ACTIVE_AI_camera_3 == True:
-            frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3)
+            frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3)
+            if (ID_DEFAULT_3 != "") and (ERROR_DEFAULT_3 != ""):
+                id_info_error_text_3 = font.render(str(ID_DEFAULT_3), True, id_info_color_3)
+                if ERROR_DEFAULT_3 == "GOOD":
+                    info_error_text_3 = font.render("GOOD", True, (0,200,0))
+                elif ERROR_DEFAULT_3 == "ERROR":
+                    info_error_text_3 = font.render("ERROR", True, (200,0,0))
         
         # Resize frame to show it on UI
         frame_3 = cv2.resize(frame_3, (camera_height, camera_width))
@@ -362,13 +379,6 @@ while running:
         frame_3 = cv2.flip(frame_3, 1)
         frame_3 = cv2.rotate(frame_3, cv2.ROTATE_90_COUNTERCLOCKWISE)
         frame_3 = pygame.surfarray.make_surface(frame_3)
-    
-    # if (ID_DEFAULT_3 != "") and (ERROR_DEFAULT_3 != ""):
-    #     id_info_error_text_3 = font.render(ID_DEFAULT_3, True, id_info_color_3)
-    #     if ERROR_DEFAULT_3 == "GOOD":
-    #         info_error_text_3 = font.render("GOOD", True, (0,200,0))
-    #     else:
-    #         info_error_text_3 = font.render("ERROR", True, (200,0,0))
     
     pygame.draw.rect(screen, (255,255,255), square_rect_3)
     pygame.draw.rect(screen, (0,0,128), square_rect_3, 3)

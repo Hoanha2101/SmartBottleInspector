@@ -8,4 +8,5 @@ from ultralytics import YOLO
 import csv
 from statistics import mode
 import threading
-
+import time
+from concurrent.futures import ThreadPoolExecutor
