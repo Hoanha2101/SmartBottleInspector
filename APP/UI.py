@@ -2,8 +2,8 @@ from library import *
 from AI import CHECK_BOTTLE_AI, CHECK_WATER_LEVEL_AI, CHECK_LABEL_AI
 from utils import *
 import tensorrt as trt
-import modules.utils as utils
-from modules.autobackend import AutoBackend
+# import modules.utils as utils
+# from modules.autobackend import AutoBackend
 
 CLEAN_CSV_BOTTLE()
 CLEAN_CSV_WATER_LEVEL()
@@ -24,13 +24,13 @@ font = pygame.font.Font(None, 36)
 border_radius_button = 30
 
 # Thiết lập camera 1
-camera_1 = cv2.VideoCapture("vi.mp4")
+camera_1 = cv2.VideoCapture("demo.mp4")
 
 # Thiết lập camera 2
-camera_2 = cv2.VideoCapture("vi.mp4")
+camera_2 = cv2.VideoCapture(3)
 
 # Thiết lập camera 3
-camera_3 = cv2.VideoCapture("vi.mp4")
+camera_3 = cv2.VideoCapture(2)
 
 #Logo ))
 logo_fpt_path = os.path.join("APP/image_set/logofptuniversity.png")
@@ -56,7 +56,6 @@ button_start_rect = pygame.Rect(1380, 700, 120, 50)
 button_start_color = (0,128,0)
 button_start_text = font.render("START", True, (255, 255, 255))
 text_start_rect = button_start_text.get_rect(center=button_start_rect.center)
-
 
 # Các thành phần trong hộp thông tin
 # hộp để show thông tin cho camera 1
@@ -325,14 +324,13 @@ while running:
     screen.blit(info_error_text_1, info_error_rect_1)
 
    
-# Quản lí frame 2 ---------------------------------------------------------------------------------------    
+# Quản lí frame 2 ---------------------------------------------------------------------------------------
     if ret_2:
         # The video uses BGR colors and PyGame needs RGB
         frame_2 = cv2.cvtColor(frame_2, cv2.COLOR_BGR2RGB)
         
         if ACTIVE_AI_camera_2 == True:
             frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1)
-            print(ID_DEFAULT_2, ERROR_DEFAULT_2)
             if (ID_DEFAULT_2 != "") and (ERROR_DEFAULT_2 != ""):
                 id_info_error_text_2 = font.render(str(ID_DEFAULT_2), True, id_info_color_2)
                 if ERROR_DEFAULT_2 == "GOOD":

@@ -136,11 +136,17 @@ import numpy as np
 import cv2
 import tensorrt
 
-model = YOLO('model_set\yolov8m.engine')  # tải mô hình ONNX
-result=model('sample_12.jpg')[0].predict(device=0)  # Dự đoán ảnh từ thư mục
+# model = YOLO('model_set\yolov8m.engine')  # tải mô hình ONNX
+# result=model('sample_12.jpg')[0].predict(device=0)  # Dự đoán ảnh từ thư mục
 
-boxes = result.boxes.xywh.cpu().numpy()  # lấy tọa độ của boxes
-probs = result.probs  # lấy xác suất của các vật thể trong ảnh
-image_drawed = result.plot()
-cv2.imwrite("result_tensorRT.jpg",image_drawed) # lưu ảnh xuống máy
+# boxes = result.boxes.xywh.cpu().numpy()  # lấy tọa độ của boxes
+# probs = result.probs  # lấy xác suất của các vật thể trong ảnh
+# image_drawed = result.plot()
+# cv2.imwrite("result_tensorRT.jpg",image_drawed) # lưu ảnh xuống máy
 
+
+X=np.array([[1,0],[0,1]])
+Y=np.array([[2,1],[1,2]]) 
+Z=np.dot(X,Y)
+
+print(Z)
