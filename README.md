@@ -117,9 +117,9 @@ We have a data set with angles of good labels and error labels.
 | Model	| CNN (custom) | VGG16 | VGG19 | RESNET18 |	RESNET34 |
 | -----	| ------------ | ----- | ----- | -------- |	-------- |
 | Number of parameters | 23.760.162 |15.766.850 | 21.076.546 |12.600.450 | 23.290.178 |
-| Accuracy(on test set) | 94.5% | 94.75% | 93.25% |	97%	95.75% |
-| Prediction time / Image(milliseconds) | 401.04 | 836.34 | 2578.54	| 2676.74 |	3315.06 |
-| Model size(Megabyes) | 271.98 | 68.25 | 88.51 | 144.55 | 267.19 |
+| Accuracy (on test set) | 94.5% | 94.75% | 93.25% |	97%	| 95.75% |
+| Prediction time/Image (milliseconds) | 401.04 | 836.34 | 2578.54	| 2676.74 |	3315.06 |
+| Model size (Megabyes) | 271.98 | 68.25 | 88.51 | 144.55 | 267.19 |
 
 
 
