@@ -1,6 +1,6 @@
 from library import *
 from utils import *
-import tensorrt as trt 
+
 # -------------------------------------------------------------         DECLARE         ---------------------------------------------------------
 
 MODEL_BOTTLE_AI = YOLO("model_set/yolov8m.pt")
@@ -66,13 +66,15 @@ def CHECK_BOTTLE_AI(FRAME, start_time):
                         
                         cv2.rectangle(FRAME,(x_min_bottle,y_min_bottle), (x_max_bottle,y_max_bottle), (255, 255, 0), thickness=2)
                         
+                        data_csv_ = pd.read_csv("data\data_water_level.csv")
+                        
                         if result_cls == "GOOD":
                             dict_info[box.id[0]] = ("GOOD",(x_min_bottle, y_min_bottle, x_max_bottle, y_max_bottle, box.id[0]))
                             cv2.putText(FRAME, "GOOD", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (0, 255, 0), 2, cv2.LINE_AA)
                             cv2.putText(FRAME, str(box.id[0]), (x_min_bottle,y_min_bottle + 15), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (0, 0, 0), 2, cv2.LINE_AA)
                         else:
                             dict_info[box.id[0]] = ("ERROR",(x_min_bottle, y_min_bottle, x_max_bottle, y_max_bottle, box.id[0]))
-                            cv2.putText(FRAME, "GOOD", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (0, 255, 0), 2, cv2.LINE_AA)
+                            cv2.putText(FRAME, "ERROR", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 0, 0), 2, cv2.LINE_AA)
                             cv2.putText(FRAME, str(box.id[0]), (x_min_bottle,y_min_bottle + 15), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (0, 0, 0), 2, cv2.LINE_AA)
                 else:
                     continue
@@ -81,7 +83,7 @@ def CHECK_BOTTLE_AI(FRAME, start_time):
     
     cv2.line(FRAME, (limit_point_1_frame_1, 0), (limit_point_1_frame_1, HEIGHT_FRAME_1), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_1, 0), (limit_point_2_frame_1, HEIGHT_FRAME_1), (255, 0, 0), thickness = 2)
-    cv2.line(FRAME, (limit_point_1_frame_1 - 100, 0), (limit_point_1_frame_1 - 100, HEIGHT_FRAME_1), (255,123,0), thickness = 2)
+    # cv2.line(FRAME, (limit_point_1_frame_1 - 100, 0), (limit_point_1_frame_1 - 100, HEIGHT_FRAME_1), (255,123,0), thickness = 2)
                 
     
     data_csv_ = pd.read_csv("data\data_bottle.csv")
@@ -99,7 +101,7 @@ def CHECK_BOTTLE_AI(FRAME, start_time):
     # Hiển thị FPS lên khung hình
     cv2.putText(FRAME, f'FPS: {fps:.2f}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
     
-    return FRAME, 1, 1
+    return FRAME, ID_DEFAULT, ERROR_DEFAULT
 
 
 
@@ -234,7 +236,7 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time):
     
     cv2.line(FRAME, (limit_point_1_frame_2, 0), (limit_point_1_frame_2, HEIGHT_FRAME_2), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_2, 0), (limit_point_2_frame_2, HEIGHT_FRAME_2), (255, 0, 0), thickness = 2)
-    cv2.line(FRAME, (limit_point_1_frame_2 - 100, 0), (limit_point_1_frame_2 - 100, HEIGHT_FRAME_2), (255,123,0), thickness = 2)
+    # cv2.line(FRAME, (limit_point_1_frame_2 - 100, 0), (limit_point_1_frame_2 - 100, HEIGHT_FRAME_2), (255,123,0), thickness = 2)
 # Save information into file csv and 
     ADD_DATA_CSV_WATER_LEVEL(dict_info, limit_point_1_frame_2, limit_point_2_frame_2)
     
@@ -393,7 +395,7 @@ def CHECK_LABEL_AI(FRAME, start_time):
     
     cv2.line(FRAME, (limit_point_1_frame_3, 0), (limit_point_1_frame_3, HEIGHT_FRAME_3), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_3, 0), (limit_point_2_frame_3, HEIGHT_FRAME_3), (255, 0, 0), thickness = 2)
-    cv2.line(FRAME, (limit_point_1_frame_3 - 100, 0), (limit_point_1_frame_3 - 100, HEIGHT_FRAME_3), (255,123,0), thickness = 2)
+    # cv2.line(FRAME, (limit_point_1_frame_3 - 100, 0), (limit_point_1_frame_3 - 100, HEIGHT_FRAME_3), (255,123,0), thickness = 2)
 # Save information into file csv and 
     ADD_DATA_CSV_LABEL(dict_info, limit_point_1_frame_3, limit_point_2_frame_3)
     

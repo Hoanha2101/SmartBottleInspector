@@ -24,10 +24,10 @@ font = pygame.font.Font(None, 36)
 border_radius_button = 30
 
 # Thiết lập camera 1
-camera_1 = cv2.VideoCapture("demo.mp4")
+camera_1 = cv2.VideoCapture(0)
 
 # Thiết lập camera 2
-camera_2 = cv2.VideoCapture(3)
+camera_2 = cv2.VideoCapture(1)
 
 # Thiết lập camera 3
 camera_3 = cv2.VideoCapture(2)
@@ -295,26 +295,24 @@ while running:
 # Quản lí frame 1 ---------------------------------------------------------------------------------------         
     if ret_1:
         
-        # The video uses BGR colors and PyGame needs RGB
         frame_1 = cv2.cvtColor(frame_1, cv2.COLOR_BGR2RGB)
-        if ACTIVE_AI_camera_1 == True:
-            frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1)
         
+        if ACTIVE_AI_camera_1 == True:
+            frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_WATER_LEVEL_AI(frame_1, start_time_1)
+            if (ID_DEFAULT_1 != "") and (ERROR_DEFAULT_1 != ""):
+                id_info_error_text_1 = font.render(str(ID_DEFAULT_1), True, id_info_color_1)
+                if ERROR_DEFAULT_1 == "GOOD":
+                    info_error_text_1 = font.render("GOOD", True, (0,200,0))
+                elif ERROR_DEFAULT_1 == "ERROR":
+                    info_error_text_1 = font.render("ERROR", True, (200,0,0))
         # Resize frame to show it on UI
-        frame_1 = cv2.resize(frame_1, (camera_height, camera_width))
+        frame_1 = cv2.resize(frame_1, (camera_height, camera_width))      
         #for some reasons the frames appeared inverted
         # The opencv camera window display on the pygame UI 
         #  is upside down compared to reality, so we have to move it
         frame_1 = cv2.flip(frame_1, 1)
         frame_1 = cv2.rotate(frame_1, cv2.ROTATE_90_COUNTERCLOCKWISE)
         frame_1 = pygame.surfarray.make_surface(frame_1)
-        
-        # if (ID_DEFAULT_1 != "") and (ERROR_DEFAULT_1 != ""):
-        #     id_info_error_text_1 = font.render(ID_DEFAULT_1, True, id_info_color_1)
-        #     if ERROR_DEFAULT_1 == "GOOD":
-        #         info_error_text_1 = font.render("GOOD", True, (0,200,0))
-        #     else:
-        #         info_error_text_1 = font.render("ERROR", True, (200,0,0))
         
     pygame.draw.rect(screen, (255,255,255), square_rect_1)
     pygame.draw.rect(screen, (0,0,128), square_rect_1, 3)
