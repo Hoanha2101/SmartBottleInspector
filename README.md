@@ -50,4 +50,4 @@ Submit a pull request.
 
 
 ## **Architecture, way of doing things**
-<img src="illustration/APP.png>
+<img src="illustration/APP.png">
