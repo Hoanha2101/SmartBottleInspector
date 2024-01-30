@@ -47,3 +47,6 @@ Submit a pull request.
 
 + Email: khaihoan.ai@gmail.com
 + Thank you for your interest in DetecTive - Making bottled water production error!
+
+###Architecture, way of doing things.
+![Product](illustration\APP.png)
