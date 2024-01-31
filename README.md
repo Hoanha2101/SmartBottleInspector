@@ -82,6 +82,25 @@ Currently, the system operates with one main thread, processing frames received 
 ### **BOTTLE CHECK**
 
 
+#### **Classification data**
+
+We perform labeling with 2 sets of photos: good and error
+<img src="illustration\data_bottle.png">
+
++ Class:
+<img src="illustration\visual_bottle_1.png">
+
++ Train set & Test set:
+<img src="illustration/visual_test_label.png">
+
+#### **Training**
+
+| Model	| CNN (custom) | VGG16 | RESNET18 |	RESNET18 (3,90,270) |
+| -----	| ------------ | ----- | -------- | ------------------- |
+| Number of parameters | 79.905.560 | 39.896.898 | 11.188.354 | 11.188.354 |
+| Accuracy (on test set) | 96.4% | 42.8% | 95.2% |	98.8%	|
+| Prediction time/Image (milliseconds) | ~92.69 | ~161.18 | ~102.53	| ~94.7 |
+| Model size (Megabyes) | 304.82 | 152.19 | 42.68 | 42.68 |
 
 ### **WATER LEVEL CHECK**
 
@@ -101,7 +120,14 @@ With this module, we continue to train the detection model with Yolov8, we proce
 
 <img src="illustration/line_label.png">
 
-### **Classification data**
+#### **Data**
+
+*Labeling tool: https://www.makesense.ai/*
+
+- Train set: 804
+- Test set: 100
+
+#### **Classification data**
 
 We have a data set with angles of good labels and error labels.
 
@@ -112,13 +138,13 @@ We have a data set with angles of good labels and error labels.
 + Test set:
 <img src="illustration/visual_test_label.png">
 
-### **Training**
+#### **Training**
 
 | Model	| CNN (custom) | VGG16 | VGG19 | RESNET18 |	RESNET34 |
 | -----	| ------------ | ----- | ----- | -------- |	-------- |
 | Number of parameters | 23.760.162 |15.766.850 | 21.076.546 |12.600.450 | 23.290.178 |
-| Accuracy (on test set) | 94.5% | 94.75% | 93.25% |	97%	| 95.75% |
-| Prediction time/Image (milliseconds) | 401.04 | 836.34 | 2578.54	| 2676.74 |	3315.06 |
+| Accuracy (on test set) | 94.5% | 94.75% | 93.25% | 96.75%	| 95.75% |
+| Prediction time/Image (milliseconds) | ~90.88 | ~67.25 | ~86.46	| ~88.34 | ~70.94 |
 | Model size (Megabyes) | 271.98 | 68.25 | 88.51 | 144.55 | 267.19 |
 
 
