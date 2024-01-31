@@ -85,12 +85,15 @@ Currently, the system operates with one main thread, processing frames received 
 #### **Classification data**
 
 We perform labeling with 2 sets of photos: good and error
+
 <img src="illustration\data_bottle.png">
 
 + Class:
+
 <img src="illustration\visual_bottle_1.png">
 
 + Train set & Test set:
+
 <img src="illustration/visual_test_label.png">
 
 #### **Training**
@@ -114,18 +117,19 @@ Besides building the model, we also design an ideal background for the model to 
 
 <img src="illustration/val_batch1_pred.jpg">
 
-### **LABEL CHECK**
-
-With this module, we continue to train the detection model with Yolov8, we proceed to label the training set, with 2 objects: label and water bottle. We can absolutely use the pre-trained model with classes = 39 of yolov8 or train a model ourselves to accurately identify the water bottle object, then extract the label region using image processing.
-
-<img src="illustration/line_label.png">
-
 #### **Data**
 
 *Labeling tool: https://www.makesense.ai/*
 
 - Train set: 804
 - Test set: 100
+
+### **LABEL CHECK**
+
+With this module, we continue to train the detection model with Yolov8, we proceed to label the training set, with 2 objects: label and water bottle. We can absolutely use the pre-trained model with classes = 39 of yolov8 or train a model ourselves to accurately identify the water bottle object, then extract the label region using image processing.
+
+<img src="illustration/line_label.png">
+
 
 #### **Classification data**
 
