@@ -94,7 +94,7 @@ We perform labeling with 2 sets of photos: good and error
 
 + Train set & Test set:
 
-<img src="illustration/visual_test_label.png">
+<img src="illustration\visual_bottle_2.png">
 
 #### **Training**
 
@@ -113,16 +113,17 @@ Besides building the model, we also design an ideal background for the model to 
 
 <img src="illustration/tech_label.png">
 
-+ The prediction results on the test set are quite good.
-
-<img src="illustration/val_batch1_pred.jpg">
-
 #### **Data**
 
 *Labeling tool: https://www.makesense.ai/*
 
 - Train set: 804
 - Test set: 100
+
++ The prediction results on the test set are quite good.
+
+<img src="illustration/val_batch1_pred.jpg">
+
 
 ### **LABEL CHECK**
 
