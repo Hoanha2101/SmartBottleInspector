@@ -1,0 +1,25 @@
+from utils import *
+
+np.random.seed(1)
+x_tmp = np.random.randn(3, 10, 7)
+a0_tmp = np.random.randn(5, 10)
+parameters_tmp = {}
+parameters_tmp['Wf'] = np.random.randn(5, 5 + 3)
+parameters_tmp['bf'] = np.random.randn(5, 1)
+parameters_tmp['Wi'] = np.random.randn(5, 5 + 3)
+parameters_tmp['bi']= np.random.randn(5, 1)
+parameters_tmp['Wo'] = np.random.randn(5, 5 + 3)
+parameters_tmp['bo'] = np.random.randn(5, 1)
+parameters_tmp['Wc'] = np.random.randn(5, 5 + 3)
+parameters_tmp['bc'] = np.random.randn(5, 1)
+parameters_tmp['Wy'] = np.random.randn(2, 5)
+parameters_tmp['by'] = np.random.randn(2, 1)
+
+a_tmp, y_tmp, c_tmp, caches_tmp = lstm_forward(x_tmp, a0_tmp, parameters_tmp)
+print("a[4][3][6] = ", a_tmp[4][3][6])
+print("a.shape = ", a_tmp.shape)
+print("y[1][4][3] =", y_tmp[1][4][3])
+print("y.shape = ", y_tmp.shape)
+print("caches[1][1][1] =\n", caches_tmp[1][1][1])
+print("c[1][2][1]", c_tmp[1][2][1])
+print("len(caches) = ", len(caches_tmp))
