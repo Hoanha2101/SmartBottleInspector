@@ -36,6 +36,9 @@
 
 
 - Contributing
+
+For contributor
+
 + We welcome contributions! If you want to contribute to DetecTive, please follow these guidelines:
 
 Fork the repository.
@@ -63,12 +66,28 @@ The product includes 3 modules corresponding to each stage of packaging a bottle
 *Product interface*
 <img src="illustration/APP.png">
 
+<<<<<<< HEAD
 ## **ARCHITECTURE**
+=======
+
+## **STEP**
+
+### **DEFINE SOLUTION**
+With our product, to achieve the purpose of applying the product in practice, it is imperative that the product be deployed in real time, while achieving high accuracy, not affected by the environment.
+We have streamlined the models as much as possible to reduce the use of multiple models, to accommodate deployment to mini hardware, such as Jetson nano, etc.
+We do not use image processing methods here, because image processing depends heavily on the background.
+
+<img src="illustration/define_solution.png">
+
+
+### **ARCHITECTURE**
+>>>>>>> develop
 
 Currently, the system operates with one main thread, processing frames received from three cameras one after another.
 
 <img src="illustration/architecture.png">
 
+<<<<<<< HEAD
 #### **Technology**
 <ul>
 <li>Yolov8</li>
@@ -83,11 +102,28 @@ Currently, the system operates with one main thread, processing frames received 
 
 
 #### **Classification data**
+=======
+## **HARDWARE - UI**
+<img src="illustration/hardware.png">
+
+
+### **DETECTION MODEL**
+We use the Yolov8 model, it is a SOTA detection model at the present time (December 20, 2023).
+Use the parameters of the pretrain model (Yolov8m) to initialize the parameters quickly.
+Through experiments, we have found that labeling the space above the water level will produce better detection results than labeling the exact black area of Pepsi water.
+
+<img src="illustration/yolo.png">
+
+### **BOTTLE CHECK**
+
+##### **Classification data**
+>>>>>>> develop
 
 We perform labeling with 2 sets of photos: good and error
 
 <img src="illustration\data_bottle.png">
 
+<<<<<<< HEAD
 + Class:
 
 <img src="illustration\visual_bottle_1.png">
@@ -123,12 +159,43 @@ Besides building the model, we also design an ideal background for the model to 
 + The prediction results on the test set are quite good.
 
 <img src="illustration/val_batch1_pred.jpg">
+=======
++ Number of classes in training set:
+
+<img src="illustration\visual_bottle_1.jpg">
+
++ Train set & Test set:
+
+<img src="illustration\visual_bottle_2.jpg">
+
+#### **Training - Evaluation**
+
+    * Resize: (90,270)
+
+| Model	| CNN (custom) | VGG16 | VGG19 |	RESNET18 |
+| -----	| ------------ | ----- | -------- | ------------------- |
+| Number of parameters | 79.905.560 | 19.041.346 | 24.351.042 | 11.188.354 |
+| Accuracy (on test set) | 98% | 95% | 99% |   96%	|
+| Average speed (1/100 image) | 103.8 ms |  75.7 ms | 81.1 ms	|  70.9 ms |
+
+<img src="illustration\evaluation_bottle.png">
+
+### **WATER LEVEL CHECK**
+Just detect two objects with the trained yolo model, then use the algorithm to manage which water level range belongs to which water bottle, then calculate the height threshold.
+
+<img src="illustration/tech_water_level.png">
+>>>>>>> develop
 
 
 ### **LABEL CHECK**
 
 With this module, we continue to train the detection model with Yolov8, we proceed to label the training set, with 2 objects: label and water bottle. We can absolutely use the pre-trained model with classes = 39 of yolov8 or train a model ourselves to accurately identify the water bottle object, then extract the label region using image processing.
 
+<<<<<<< HEAD
+=======
+Or use Yolo model trained with 2 class: bottle, water level
+
+>>>>>>> develop
 <img src="illustration/line_label.png">
 
 
@@ -138,16 +205,25 @@ We have a data set with angles of good labels and error labels.
 
 + Train set:
 <img src="illustration/visual_label_1.png">
+<<<<<<< HEAD
 <img src="illustration/visual_label_2.png">
+=======
+<img src="illustration/visual_label_2.jpg">
+>>>>>>> develop
 
 + Test set:
 <img src="illustration/visual_test_label.png">
 
+<<<<<<< HEAD
 #### **Training**
+=======
+#### **Training - Evaluation**
+>>>>>>> develop
 
 | Model	| CNN (custom) | VGG16 | VGG19 | RESNET18 |	RESNET34 |
 | -----	| ------------ | ----- | ----- | -------- |	-------- |
 | Number of parameters | 23.760.162 |15.766.850 | 21.076.546 |12.600.450 | 23.290.178 |
+<<<<<<< HEAD
 | Accuracy (on test set) | 94.5% | 94.75% | 93.25% | 96.75%	| 95.75% |
 | Prediction time/Image (milliseconds) | ~90.88 | ~67.25 | ~86.46	| ~88.34 | ~70.94 |
 | Model size (Megabyes) | 271.98 | 68.25 | 88.51 | 144.55 | 267.19 |
@@ -155,6 +231,18 @@ We have a data set with angles of good labels and error labels.
 
 
 
+=======
+| Accuracy (on test set) | 92% | 95.5% | 96% | 96%	| 96.75% |
+| Average speed (1/100 image) | 90.71 ms | 83.42 ms | 85.77 ms	| 67.46 ms | 78.77 ms |
+
+<img src="illustration\evaluation_label.png">
+
+### **OPTIMIZER**
+
+<img src="illustration\optimize1.png">
+
+<img src="illustration\optimize2.png">
+>>>>>>> develop
 
 
 
