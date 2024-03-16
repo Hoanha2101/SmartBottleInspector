@@ -14,41 +14,13 @@ from statistics import mode
 from deepSort.deep_sort.deep_sort import DeepSort
 from deepSort.deep_sort.sort.tracker import Tracker
 from PIL import Image
-
-decide_var = 15
-
-"""decide_var: This variable is understood as the number of correct decisions in a list of the first 30 values of data_mask, 
-GOOD or ERROR status. If it is greater than this variable, the final conclusion will be given for that bottle of water."""
-
-class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
-               'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
-               'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
-               'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
-               'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
-               'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
-               'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard',
-               'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase',
-               'scissors', 'teddy bear', 'hair drier', 'toothbrush']
-
-"""------------------------------Yolo Model for modules-----------------------------------"""
-
-# Path YOLOv8 model 
-path_DetectMODEL = "model_set/detect/YOLOv8_combine.pt"
-
-# Org model
-path_cls_bottle_org = "model_set/classification/org/model_cls_bottle.h5"
-path_cls_label_org = "model_set/classification/org/model_cls_label.h5"
-path_cls_combine_org = "model_set/classification/org/model_combine.h5"
-
-# TensorRT model
-path_cls_bottle_RT = "model_set/classification/tensorRT/model_cls_bottle.trt"
-path_cls_label_RT = "model_set/classification/tensorRT/model_cls_label.trt"
-path_org_combine_RT = "model_set/classification/tensorRT/model_combine.trt"
-
+from config import *
 
 MODEL_BOTTLE_AI = YOLO(path_DetectMODEL)
 MODEL_WATER_LEVEL_AI = YOLO(path_DetectMODEL)
 MODEL_LABEL_AI = YOLO(path_DetectMODEL)
+
+# MODEL_LABEL_AI = YOLO("yolov8m.pt")
 
 
 # Initialize DeepSORT tracker   
@@ -60,7 +32,7 @@ tracker = DeepSort(model_path=deep_sort_weights, max_age=70)
 
 classes_cls_bottle = { 0:'GOOD', 1:'ERROR'}
 input_names_bottle = ['x']
-output_names_bottle = ['dense_22']
+output_names_bottle = [output_names_bottle_str]
 batch_bottle = 1
 net_bottle_RT = TensorrtBase(path_cls_bottle_RT,
                               input_names=input_names_bottle,
@@ -122,7 +94,7 @@ def predict_cnn_bottle(img):
 
 classes_cls_label = { 0:'GOOD', 1:'ERROR'}
 input_names_label = ['x']
-output_names_label = ['dense_44']
+output_names_label = [output_names_label_str]
 batch_label = 1
 net_label_RT = TensorrtBase(path_cls_label_RT,
                               input_names=input_names_label,
@@ -185,7 +157,7 @@ def predict_cnn_label(img):
 
 classes_cls_combine = { 0:'GOOD', 1:'ERROR'}
 input_names_combine = ['x']
-output_names_combine = ['dense_11']
+output_names_combine = [output_names_combine_str]
 batch_combine = 1
 net_combine_RT = TensorrtBase(path_org_combine_RT,
                               input_names=input_names_combine,
