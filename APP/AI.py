@@ -4,7 +4,11 @@ import time
 
 #--------------------------------------------------------------        AI MODULE        ---------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
 def CHECK_BOTTLE_AI(FRAME, start_time, activate_optimize_RT):
+=======
+def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
+>>>>>>> UI-Hoan
 =======
 def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
 >>>>>>> UI-Hoan
@@ -21,8 +25,13 @@ def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
     WIDTH_FRAME_1 = FRAME.shape[1]
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     limit_point_1_frame_1 = int(WIDTH_FRAME_1/2) - 80
     limit_point_2_frame_1 = int(WIDTH_FRAME_1/2) + 80
+=======
+    limit_point_1_frame_1 = int(WIDTH_FRAME_1/2) + 20 
+    limit_point_2_frame_1 = int(WIDTH_FRAME_1/2) + 180
+>>>>>>> UI-Hoan
 =======
     limit_point_1_frame_1 = int(WIDTH_FRAME_1/2) + 20 
     limit_point_2_frame_1 = int(WIDTH_FRAME_1/2) + 180
@@ -52,12 +61,18 @@ def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
             if box.cls[0] == 0:
                 x_min_bottle, y_min_bottle, x_max_bottle, y_max_bottle = map(int,(box.xyxy[0][0], box.xyxy[0][1], box.xyxy[0][2], box.xyxy[0][3]))
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (limit_point_1_frame_1 - 100) < x_max_bottle < (limit_point_2_frame_1 + 20) and ( box.id is not None):
 =======
+=======
+>>>>>>> UI-Hoan
                 
                 #cv2.rectangle(FRAME,(x_min_bottle,y_min_bottle), (x_max_bottle,y_max_bottle), (255, 255, 0), thickness=2)
                 
                 if (limit_point_1_frame_1 - 150) < x_max_bottle < (limit_point_2_frame_1 + 20) and ( box.id is not None):
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
 >>>>>>> UI-Hoan
                     # index_id = id_real_f2.index(int(box.id[0]))
                     # id_show = str(id_mask[index_id])
@@ -86,7 +101,12 @@ def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
                         else:
                             cv2.rectangle(FRAME,(x_min_bottle,y_min_bottle), (x_max_bottle,y_max_bottle), (0, 0, 0), thickness=2)
 <<<<<<< HEAD
+<<<<<<< HEAD
                             cv2.putText(FRAME, "GOOD", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+=======
+                            if is_ANNO:
+                                cv2.putText(FRAME, "GOOD", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+>>>>>>> UI-Hoan
 =======
                             if is_ANNO:
                                 cv2.putText(FRAME, "GOOD", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
@@ -100,7 +120,12 @@ def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
                         else:
                             cv2.rectangle(FRAME,(x_min_bottle,y_min_bottle), (x_max_bottle,y_max_bottle), (0, 0, 0), thickness=2)
 <<<<<<< HEAD
+<<<<<<< HEAD
                             cv2.putText(FRAME, "ERROR", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+=======
+                            if is_ANNO:
+                                cv2.putText(FRAME, "ERROR", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+>>>>>>> UI-Hoan
 =======
                             if is_ANNO:
                                 cv2.putText(FRAME, "ERROR", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
@@ -113,7 +138,11 @@ def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
     cv2.line(FRAME, (limit_point_1_frame_1, 0), (limit_point_1_frame_1, HEIGHT_FRAME_1), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_1, 0), (limit_point_2_frame_1, HEIGHT_FRAME_1), (255, 0, 0), thickness = 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
     # cv2.line(FRAME, (limit_point_1_frame_1 - 100, 0), (limit_point_1_frame_1 - 100, HEIGHT_FRAME_1), (255,123,0), thickness = 2)
+=======
+    cv2.line(FRAME, (limit_point_1_frame_1 - 150, 0), (limit_point_1_frame_1 - 150, HEIGHT_FRAME_1), (255,123,0), thickness = 2)
+>>>>>>> UI-Hoan
 =======
     cv2.line(FRAME, (limit_point_1_frame_1 - 150, 0), (limit_point_1_frame_1 - 150, HEIGHT_FRAME_1), (255,123,0), thickness = 2)
 >>>>>>> UI-Hoan
@@ -218,7 +247,11 @@ def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 def CHECK_WATER_LEVEL_AI(FRAME, start_time):   
+=======
+def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):   
+>>>>>>> UI-Hoan
 =======
 def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):   
 >>>>>>> UI-Hoan
@@ -235,8 +268,13 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
     WIDTH_FRAME_2 = FRAME.shape[1]
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     limit_point_1_frame_2 = int(WIDTH_FRAME_2/2) - 80
     limit_point_2_frame_2 = int(WIDTH_FRAME_2/2) + 80
+=======
+    limit_point_1_frame_2 = int(WIDTH_FRAME_2/2) + 20
+    limit_point_2_frame_2 = int(WIDTH_FRAME_2/2) + 180
+>>>>>>> UI-Hoan
 =======
     limit_point_1_frame_2 = int(WIDTH_FRAME_2/2) + 20
     limit_point_2_frame_2 = int(WIDTH_FRAME_2/2) + 180
@@ -294,7 +332,11 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
                 
                 # Limit the area where all processing and decisions on the object will take place, display good or error messages on the display above the UI
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (limit_point_1_frame_2 - 100) < x_max_bottle < (limit_point_2_frame_2 + 20) and ( box.id is not None):
+=======
+                if (limit_point_1_frame_2 - 150) < x_max_bottle < (limit_point_2_frame_2 + 20) and ( box.id is not None):
+>>>>>>> UI-Hoan
 =======
                 if (limit_point_1_frame_2 - 150) < x_max_bottle < (limit_point_2_frame_2 + 20) and ( box.id is not None):
 >>>>>>> UI-Hoan
@@ -325,7 +367,11 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
                     denominator = (coor_water[3] - coor_water[1])
                 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if 3.9 < (numerator/denominator) < 4.35:
+=======
+                    if 3.8 < (numerator/denominator) < 4.4:
+>>>>>>> UI-Hoan
 =======
                     if 3.8 < (numerator/denominator) < 4.4:
 >>>>>>> UI-Hoan
@@ -360,7 +406,12 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
                 cv2.line(FRAME, (i[0][0], i[0][3]- 5), (i[0][2], i[0][3] - 5), (0, 255, 0), thickness=2) #water level
                 cv2.rectangle(FRAME, (i[1][0], i[1][1]), (i[1][2], i[1][3]), (0, 0, 0), thickness=2)
 <<<<<<< HEAD
+<<<<<<< HEAD
                 cv2.putText(FRAME, result_status, (i[1][0], i[1][1] - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+=======
+                if is_ANNO:
+                    cv2.putText(FRAME, result_status, (i[1][0], i[1][1] - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+>>>>>>> UI-Hoan
 =======
                 if is_ANNO:
                     cv2.putText(FRAME, result_status, (i[1][0], i[1][1] - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
@@ -385,7 +436,12 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
                 cv2.line(FRAME, (i[0][0], i[0][3]-  5), (i[0][2], i[0][3] - 5), (255, 0, 0), thickness=2) #water level
                 cv2.rectangle(FRAME, (i[1][0], i[1][1]), (i[1][2], i[1][3]), (0, 0, 0), thickness=2)
 <<<<<<< HEAD
+<<<<<<< HEAD
                 cv2.putText(FRAME, result_status, (i[1][0], i[1][1] - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+=======
+                if is_ANNO:
+                    cv2.putText(FRAME, result_status, (i[1][0], i[1][1] - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+>>>>>>> UI-Hoan
 =======
                 if is_ANNO:
                     cv2.putText(FRAME, result_status, (i[1][0], i[1][1] - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
@@ -396,7 +452,11 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
     cv2.line(FRAME, (limit_point_1_frame_2, 0), (limit_point_1_frame_2, HEIGHT_FRAME_2), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_2, 0), (limit_point_2_frame_2, HEIGHT_FRAME_2), (255, 0, 0), thickness = 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
     # cv2.line(FRAME, (limit_point_1_frame_2 - 100, 0), (limit_point_1_frame_2 - 100, HEIGHT_FRAME_2), (255,123,0), thickness = 2)
+=======
+    cv2.line(FRAME, (limit_point_1_frame_2 - 150, 0), (limit_point_1_frame_2 - 150, HEIGHT_FRAME_2), (255,123,0), thickness = 2)
+>>>>>>> UI-Hoan
 =======
     cv2.line(FRAME, (limit_point_1_frame_2 - 150, 0), (limit_point_1_frame_2 - 150, HEIGHT_FRAME_2), (255,123,0), thickness = 2)
 >>>>>>> UI-Hoan
@@ -585,7 +645,11 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
 
 """Label - version 2"""
 <<<<<<< HEAD
+<<<<<<< HEAD
 def CHECK_LABEL_AI(FRAME, start_time, activate_optimize_RT):
+=======
+def CHECK_LABEL_AI(FRAME, start_time,is_ANNO ,activate_optimize_RT):
+>>>>>>> UI-Hoan
 =======
 def CHECK_LABEL_AI(FRAME, start_time,is_ANNO ,activate_optimize_RT):
 >>>>>>> UI-Hoan
@@ -602,8 +666,13 @@ def CHECK_LABEL_AI(FRAME, start_time,is_ANNO ,activate_optimize_RT):
     WIDTH_FRAME_3 = FRAME.shape[1]
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     limit_point_1_frame_3 = int(WIDTH_FRAME_3/2) - 80
     limit_point_2_frame_3 = int(WIDTH_FRAME_3/2) + 80
+=======
+    limit_point_1_frame_3 = int(WIDTH_FRAME_3/2) + 20
+    limit_point_2_frame_3 = int(WIDTH_FRAME_3/2) + 180
+>>>>>>> UI-Hoan
 =======
     limit_point_1_frame_3 = int(WIDTH_FRAME_3/2) + 20
     limit_point_2_frame_3 = int(WIDTH_FRAME_3/2) + 180
@@ -626,7 +695,11 @@ def CHECK_LABEL_AI(FRAME, start_time,is_ANNO ,activate_optimize_RT):
             if box.cls[0] == 0:
                 x_min_bottle, y_min_bottle, x_max_bottle, y_max_bottle = map(int,(box.xyxy[0][0], box.xyxy[0][1], box.xyxy[0][2], box.xyxy[0][3]))
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (limit_point_1_frame_3 - 100) < x_max_bottle < (limit_point_2_frame_3 + 20) and ( box.id is not None):
+=======
+                if (limit_point_1_frame_3 - 150) < x_max_bottle < (limit_point_2_frame_3 + 20) and ( box.id is not None):
+>>>>>>> UI-Hoan
 =======
                 if (limit_point_1_frame_3 - 150) < x_max_bottle < (limit_point_2_frame_3 + 20) and ( box.id is not None):
 >>>>>>> UI-Hoan
@@ -659,7 +732,12 @@ def CHECK_LABEL_AI(FRAME, start_time,is_ANNO ,activate_optimize_RT):
                             cv2.rectangle(FRAME,(x_min_bottle,y_min_bottle), (x_max_bottle,y_max_bottle), (0, 0, 0), thickness=2)
                             cv2.rectangle(FRAME,(x_min_bottle ,y_min_bottle + int(region_bottle.shape[0]*0.38)), (x_max_bottle,y_min_bottle + int(region_bottle.shape[0]*0.73)), (100, 0, 100), thickness=3)
 <<<<<<< HEAD
+<<<<<<< HEAD
                             cv2.putText(FRAME, "GOOD", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+=======
+                            if is_ANNO:
+                                cv2.putText(FRAME, "GOOD", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+>>>>>>> UI-Hoan
 =======
                             if is_ANNO:
                                 cv2.putText(FRAME, "GOOD", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
@@ -675,7 +753,12 @@ def CHECK_LABEL_AI(FRAME, start_time,is_ANNO ,activate_optimize_RT):
                             cv2.rectangle(FRAME,(x_min_bottle,y_min_bottle), (x_max_bottle,y_max_bottle), (0, 0, 0), thickness=2)
                             cv2.rectangle(FRAME,(x_min_bottle ,y_min_bottle + int(region_bottle.shape[0]*0.38)), (x_max_bottle,y_min_bottle + int(region_bottle.shape[0]*0.73)), (100, 0, 100), thickness=3)
 <<<<<<< HEAD
+<<<<<<< HEAD
                             cv2.putText(FRAME, "ERROR", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+=======
+                            if is_ANNO:
+                                cv2.putText(FRAME, "ERROR", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+>>>>>>> UI-Hoan
 =======
                             if is_ANNO:
                                 cv2.putText(FRAME, "ERROR", (x_min_bottle,y_min_bottle - 10), cv2.FONT_HERSHEY_SIMPLEX , 0.6, (255, 255, 0), 2, cv2.LINE_AA)
@@ -688,7 +771,11 @@ def CHECK_LABEL_AI(FRAME, start_time,is_ANNO ,activate_optimize_RT):
     cv2.line(FRAME, (limit_point_1_frame_3, 0), (limit_point_1_frame_3, HEIGHT_FRAME_3), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_3, 0), (limit_point_2_frame_3, HEIGHT_FRAME_3), (255, 0, 0), thickness = 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
     # cv2.line(FRAME, (limit_point_1_frame_3 - 100, 0), (limit_point_1_frame_3 - 100, HEIGHT_FRAME_1), (255,123,0), thickness = 2)
+=======
+    cv2.line(FRAME, (limit_point_1_frame_3 - 150, 0), (limit_point_1_frame_3 - 150, HEIGHT_FRAME_3), (255,123,0), thickness = 2)
+>>>>>>> UI-Hoan
 =======
     cv2.line(FRAME, (limit_point_1_frame_3 - 150, 0), (limit_point_1_frame_3 - 150, HEIGHT_FRAME_3), (255,123,0), thickness = 2)
 >>>>>>> UI-Hoan
@@ -727,8 +814,13 @@ def AI_COMBINE(FRAME, start_time, activate_optimize_RT):
     WIDTH_FRAME_COMBINE = FRAME.shape[1]
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     limit_point_1_frame_1 = int(WIDTH_FRAME_COMBINE/2) - 80
     limit_point_2_frame_1 = int(WIDTH_FRAME_COMBINE/2) + 80
+=======
+    limit_point_1_frame_1 = int(WIDTH_FRAME_COMBINE/2) + 20
+    limit_point_2_frame_1 = int(WIDTH_FRAME_COMBINE/2) + 180
+>>>>>>> UI-Hoan
 =======
     limit_point_1_frame_1 = int(WIDTH_FRAME_COMBINE/2) + 20
     limit_point_2_frame_1 = int(WIDTH_FRAME_COMBINE/2) + 180
@@ -758,7 +850,11 @@ def AI_COMBINE(FRAME, start_time, activate_optimize_RT):
             if box.cls[0] == 0:
                 x_min_bottle, y_min_bottle, x_max_bottle, y_max_bottle = map(int,(box.xyxy[0][0], box.xyxy[0][1], box.xyxy[0][2], box.xyxy[0][3]))
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (limit_point_1_frame_1 - 100) < x_max_bottle < (limit_point_2_frame_1 + 20) and ( box.id is not None):
+=======
+                if (limit_point_1_frame_1 - 150) < x_max_bottle < (limit_point_2_frame_1 + 20) and ( box.id is not None):
+>>>>>>> UI-Hoan
 =======
                 if (limit_point_1_frame_1 - 150) < x_max_bottle < (limit_point_2_frame_1 + 20) and ( box.id is not None):
 >>>>>>> UI-Hoan
@@ -781,7 +877,11 @@ def AI_COMBINE(FRAME, start_time, activate_optimize_RT):
                         result_cls = str(data_csv_exist.loc[data_csv_exist.id == box.id[0]]["status"].values[0])
                     
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if  x_max_bottle == limit_point_1_frame_1:
+=======
+                    if  x_max_bottle == limit_point_1_frame_1 - 10:
+>>>>>>> UI-Hoan
 =======
                     if  x_max_bottle == limit_point_1_frame_1 - 10:
 >>>>>>> UI-Hoan
@@ -818,7 +918,11 @@ def AI_COMBINE(FRAME, start_time, activate_optimize_RT):
     cv2.line(FRAME, (limit_point_1_frame_1, 0), (limit_point_1_frame_1, HEIGHT_FRAME_COMBINE), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_1, 0), (limit_point_2_frame_1, HEIGHT_FRAME_COMBINE), (255, 0, 0), thickness = 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
     # cv2.line(FRAME, (limit_point_1_frame_1 - 100, 0), (limit_point_1_frame_1 - 100, HEIGHT_FRAME_COMBINE), (255,123,0), thickness = 2)
+=======
+    # cv2.line(FRAME, (limit_point_1_frame_1 - 150, 0), (limit_point_1_frame_1 - 150, HEIGHT_FRAME_COMBINE), (255,123,0), thickness = 2)
+>>>>>>> UI-Hoan
 =======
     # cv2.line(FRAME, (limit_point_1_frame_1 - 150, 0), (limit_point_1_frame_1 - 150, HEIGHT_FRAME_COMBINE), (255,123,0), thickness = 2)
 >>>>>>> UI-Hoan

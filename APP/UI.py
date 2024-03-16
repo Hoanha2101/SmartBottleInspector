@@ -142,7 +142,10 @@ module_combine_on_surface = pygame.transform.scale(module_combine_on_surface, (4
 module_combine_on_area = pygame.Rect(750, 650, 40, 40)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> UI-Hoan
 ANNO_text = POKEFONT.render("ANNO", True, (0, 0, 0))
 ANNO_rect = ANNO_text.get_rect(center=(400, 742))
 
@@ -181,6 +184,9 @@ text_demo_3_rect = demo_3_text.get_rect(center=demo_3_rect.center)
 
 "--------------------------------------------------"
 
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
 >>>>>>> UI-Hoan
 # Button Start - End
 button_start_rect = pygame.Rect(1385, 700, 120, 50)  
@@ -340,11 +346,17 @@ is_square_setting_visible = False
 is_combine_module = False
 is_setting_icon = True
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> UI-Hoan
 is_ANNO = False
 
 is_demo_module = 1
 
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
 >>>>>>> UI-Hoan
 # Phần thân chính chạy app-------------------------------------------------------------------------------------------------------------------|
 
@@ -399,9 +411,12 @@ while running:
                             button_start_text = font.render("  END", True, (255, 255, 255))
                             status_light_color_combine = (0, 255, 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
                             
                     
 =======
+=======
+>>>>>>> UI-Hoan
             
             if is_square_setting_visible == True:
                 if demo_1_rect.collidepoint(event.pos):
@@ -414,6 +429,9 @@ while running:
                 if logo_switch_on_ANNO_area.collidepoint(event.pos):
                     is_ANNO = not is_ANNO
                 
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
 >>>>>>> UI-Hoan
             if is_combine_module == False:
                 if switch_on_rect_box_camera_1.collidepoint(event.pos):
@@ -513,6 +531,7 @@ while running:
         pygame.draw.rect(screen, status_light_color_camera_3, status_light_rect_camera_3, border_radius = 30)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         # Bắt đầu tính toán thời gian để đo FPS
         start_time_1 = time.time()
         ret_1, frame_1 = camera_1.read()  # Camera frame to Check bottle
@@ -523,6 +542,8 @@ while running:
         start_time_3 = time.time()
         ret_3, frame_3 = camera_3.read()  # Camera frame to Check label
 =======
+=======
+>>>>>>> UI-Hoan
         if is_demo_module == 1:
             # Bắt đầu tính toán thời gian để đo FPS
             start_time_1 = time.time()
@@ -555,6 +576,9 @@ while running:
             
             start_time_3 = time.time()
             ret_3, frame_3 = camera_1.read()
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
 >>>>>>> UI-Hoan
 
     # Quản lí frame 1 ---------------------------------------------------------------------------------------         
@@ -565,7 +589,11 @@ while running:
             if ACTIVE_AI_camera_1 == True:
                 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1, activate_optimize_RT)
+=======
+                frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1,is_ANNO , activate_optimize_RT)
+>>>>>>> UI-Hoan
 =======
                 frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1,is_ANNO , activate_optimize_RT)
 >>>>>>> UI-Hoan
@@ -600,7 +628,11 @@ while running:
             
             if ACTIVE_AI_camera_2 == True:
 <<<<<<< HEAD
+<<<<<<< HEAD
                 frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1)
+=======
+                frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1, is_ANNO)
+>>>>>>> UI-Hoan
 =======
                 frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1, is_ANNO)
 >>>>>>> UI-Hoan
@@ -635,7 +667,11 @@ while running:
             # Pass the frame and the AI function to output a new frame containing predictions about the object in the frame
             if ACTIVE_AI_camera_3 == True:
 <<<<<<< HEAD
+<<<<<<< HEAD
                 frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3, activate_optimize_RT)
+=======
+                frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3, is_ANNO, activate_optimize_RT)
+>>>>>>> UI-Hoan
 =======
                 frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3, is_ANNO, activate_optimize_RT)
 >>>>>>> UI-Hoan
@@ -756,7 +792,10 @@ while running:
         screen.blit(title_combine_text, title_combine_rect)
         
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> UI-Hoan
         screen.blit(DEMO_text, DEMO_rect)
         
         screen.blit(ANNO_text, ANNO_rect)
@@ -790,6 +829,9 @@ while running:
         else:
             screen.blit(logo_switch_off_ANNO_surface,(430, 690))
         
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
 >>>>>>> UI-Hoan
         if is_combine_module == True:
             screen.blit(module_3_off_surface,(550, 650))
@@ -807,6 +849,10 @@ camera_2.release()
 camera_3.release()
 pygame.quit()
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> UI-Hoan
 =======
 
 >>>>>>> UI-Hoan
