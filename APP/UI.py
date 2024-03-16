@@ -141,6 +141,63 @@ module_combine_on_surface = pygame.image.load(module_combine_on_path)
 module_combine_on_surface = pygame.transform.scale(module_combine_on_surface, (40, 40))
 module_combine_on_area = pygame.Rect(750, 650, 40, 40)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> UI-Hoan
+>>>>>>> UI
+ANNO_text = POKEFONT.render("ANNO", True, (0, 0, 0))
+ANNO_rect = ANNO_text.get_rect(center=(400, 742))
+
+#switch_on_annotation))
+logo_switch_on_ANNO_path = os.path.join("APP/image_set/switch_on.png")
+logo_switch_on_ANNO_surface = pygame.image.load(logo_switch_on_ANNO_path)
+logo_switch_on_ANNO_surface = pygame.transform.scale(logo_switch_on_ANNO_surface, (100, 90))
+logo_switch_on_ANNO_area = pygame.Rect(430, 690, 100, 90)
+
+#switch_off_annotation))
+logo_switch_off_ANNO_path = os.path.join("APP/image_set/switch_off.png")
+logo_switch_off_ANNO_surface = pygame.image.load(logo_switch_off_ANNO_path)
+logo_switch_off_ANNO_surface = pygame.transform.scale(logo_switch_off_ANNO_surface, (100, 90))
+
+"--------------------------------------------------"
+DEMO_text = POKEFONT.render("DEMO", True, (0, 0, 0))
+DEMO_rect = DEMO_text.get_rect(center=(660, 742))
+
+# Button demo 1
+demo_1_rect = pygame.Rect(740, 720, 40, 40)  
+demo_1_color = (128,0,0)
+demo_1_text = font.render("1", True, (255, 255, 255))
+text_demo_1_rect = demo_1_text.get_rect(center=demo_1_rect.center)
+
+# Button demo 2
+demo_2_rect = pygame.Rect(790, 720, 40, 40)  
+demo_2_color = (128,0,0)
+demo_2_text = font.render("2", True, (255, 255, 255))
+text_demo_2_rect = demo_2_text.get_rect(center=demo_2_rect.center)
+
+# Button demo 3
+demo_3_rect = pygame.Rect(840, 720, 40, 40)  
+demo_3_color = (128,0,0)
+demo_3_text = font.render("3", True, (255, 255, 255))
+text_demo_3_rect = demo_3_text.get_rect(center=demo_3_rect.center)
+
+"--------------------------------------------------"
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
+>>>>>>> UI
+>>>>>>> UI-Hoan
+>>>>>>> develop
 # Button Start - End
 button_start_rect = pygame.Rect(1385, 700, 120, 50)  
 button_start_color = (0,128,0)
@@ -298,6 +355,29 @@ activate_optimize_RT = False
 is_square_setting_visible = False
 is_combine_module = False
 is_setting_icon = True
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> UI-Hoan
+>>>>>>> UI
+is_ANNO = False
+
+is_demo_module = 1
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
+>>>>>>> UI
+>>>>>>> UI-Hoan
+>>>>>>> develop
 # Phần thân chính chạy app-------------------------------------------------------------------------------------------------------------------|
 
 while running:
@@ -350,8 +430,43 @@ while running:
                             button_start_color = (255, 0, 0)  # Màu đỏ
                             button_start_text = font.render("  END", True, (255, 255, 255))
                             status_light_color_combine = (0, 255, 0)
+<<<<<<< HEAD
                             
                     
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                            
+                    
+=======
+=======
+<<<<<<< HEAD
+                            
+                    
+=======
+=======
+>>>>>>> UI-Hoan
+>>>>>>> UI
+            
+            if is_square_setting_visible == True:
+                if demo_1_rect.collidepoint(event.pos):
+                    is_demo_module = 1
+                if demo_2_rect.collidepoint(event.pos):
+                    is_demo_module = 2
+                if demo_3_rect.collidepoint(event.pos):
+                    is_demo_module = 3
+                
+                if logo_switch_on_ANNO_area.collidepoint(event.pos):
+                    is_ANNO = not is_ANNO
+                
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
+>>>>>>> UI
+>>>>>>> UI-Hoan
+>>>>>>> develop
             if is_combine_module == False:
                 if switch_on_rect_box_camera_1.collidepoint(event.pos):
                     ACTIVE_AI_camera_1 = True
@@ -449,6 +564,14 @@ while running:
             pygame.draw.rect(screen, (255,0,0), switch_off_rect_box_camera_3,3)
         pygame.draw.rect(screen, status_light_color_camera_3, status_light_rect_camera_3, border_radius = 30)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI
+>>>>>>> develop
         # Bắt đầu tính toán thời gian để đo FPS
         start_time_1 = time.time()
         ret_1, frame_1 = camera_1.read()  # Camera frame to Check bottle
@@ -458,6 +581,54 @@ while running:
         
         start_time_3 = time.time()
         ret_3, frame_3 = camera_3.read()  # Camera frame to Check label
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> UI-Hoan
+>>>>>>> UI
+        if is_demo_module == 1:
+            # Bắt đầu tính toán thời gian để đo FPS
+            start_time_1 = time.time()
+            ret_1, frame_1 = camera_1.read()  # Camera frame to Check bottle
+            
+            start_time_1 = time.time()
+            ret_2, frame_2 = camera_2.read()  # Camera frame to Check water level
+            
+            start_time_3 = time.time()
+            ret_3, frame_3 = camera_3.read()  # Camera frame to Check label
+            
+        if is_demo_module == 2:
+            
+            start_time_1 = time.time()
+            ret_1, frame_1 = camera_2.read()
+            
+            start_time_1 = time.time()
+            ret_2, frame_2 = camera_1.read() 
+            
+            start_time_3 = time.time()
+            ret_3, frame_3 = camera_3.read()  
+            
+        if is_demo_module == 3:
+            
+            start_time_1 = time.time()
+            ret_1, frame_1 = camera_2.read()
+            
+            start_time_1 = time.time()
+            ret_2, frame_2 = camera_3.read()
+            
+            start_time_3 = time.time()
+            ret_3, frame_3 = camera_1.read()
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
+>>>>>>> UI
+>>>>>>> UI-Hoan
+>>>>>>> develop
 
     # Quản lí frame 1 ---------------------------------------------------------------------------------------         
         if ret_1:
@@ -466,7 +637,25 @@ while running:
             
             if ACTIVE_AI_camera_1 == True:
                 
+<<<<<<< HEAD
                 frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1, activate_optimize_RT)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI
+                frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1, activate_optimize_RT)
+=======
+                frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1,is_ANNO , activate_optimize_RT)
+>>>>>>> UI-Hoan
+<<<<<<< HEAD
+=======
+=======
+                frame_1, ID_DEFAULT_1, ERROR_DEFAULT_1 = CHECK_BOTTLE_AI(frame_1, start_time_1,is_ANNO , activate_optimize_RT)
+>>>>>>> UI-Hoan
+>>>>>>> UI
+>>>>>>> develop
                 
                 if (ID_DEFAULT_1 != "") and (ERROR_DEFAULT_1 != ""):
                     id_info_error_text_1 = font.render(str(ID_DEFAULT_1), True, id_info_color_1)
@@ -497,7 +686,25 @@ while running:
             frame_2 = cv2.cvtColor(frame_2, cv2.COLOR_BGR2RGB)
             
             if ACTIVE_AI_camera_2 == True:
+<<<<<<< HEAD
                 frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI
+                frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1)
+=======
+                frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1, is_ANNO)
+>>>>>>> UI-Hoan
+<<<<<<< HEAD
+=======
+=======
+                frame_2, ID_DEFAULT_2, ERROR_DEFAULT_2 = CHECK_WATER_LEVEL_AI(frame_2, start_time_1, is_ANNO)
+>>>>>>> UI-Hoan
+>>>>>>> UI
+>>>>>>> develop
                 if (ID_DEFAULT_2 != "") and (ERROR_DEFAULT_2 != ""):
                     id_info_error_text_2 = font.render(str(ID_DEFAULT_2), True, id_info_color_2)
                     if ERROR_DEFAULT_2 == "GOOD":
@@ -528,7 +735,25 @@ while running:
             
             # Pass the frame and the AI function to output a new frame containing predictions about the object in the frame
             if ACTIVE_AI_camera_3 == True:
+<<<<<<< HEAD
                 frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3, activate_optimize_RT)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI
+                frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3, activate_optimize_RT)
+=======
+                frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3, is_ANNO, activate_optimize_RT)
+>>>>>>> UI-Hoan
+<<<<<<< HEAD
+=======
+=======
+                frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3, is_ANNO, activate_optimize_RT)
+>>>>>>> UI-Hoan
+>>>>>>> UI
+>>>>>>> develop
                 if (ID_DEFAULT_3 != "") and (ERROR_DEFAULT_3 != ""):
                     id_info_error_text_3 = font.render(str(ID_DEFAULT_3), True, id_info_color_3)
                     if ERROR_DEFAULT_3 == "GOOD":
@@ -645,6 +870,58 @@ while running:
         screen.blit(title_setting_text, title_setting_rect)
         screen.blit(title_combine_text, title_combine_rect)
         
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> UI-Hoan
+>>>>>>> UI
+        screen.blit(DEMO_text, DEMO_rect)
+        
+        screen.blit(ANNO_text, ANNO_rect)
+        
+        if is_demo_module == 1:
+            demo_1_color = (0,128,0)
+            demo_2_color = (128,0,0)
+            demo_3_color = (128,0,0)
+            
+        if is_demo_module == 2:
+            demo_1_color = (128,0,0)
+            demo_2_color = (0,128,0)
+            demo_3_color = (128,0,0)
+            
+        if is_demo_module == 3:
+            demo_1_color = (128,0,0)
+            demo_2_color = (128,0,0)
+            demo_3_color = (0,128,0)
+            
+        pygame.draw.rect(screen, demo_1_color, demo_1_rect, border_radius= 30)
+        screen.blit(demo_1_text, text_demo_1_rect)
+        
+        pygame.draw.rect(screen, demo_2_color, demo_2_rect, border_radius= 30)
+        screen.blit(demo_2_text, text_demo_2_rect)
+        
+        pygame.draw.rect(screen, demo_3_color, demo_3_rect, border_radius= 30)
+        screen.blit(demo_3_text, text_demo_3_rect)
+        
+        if is_ANNO:
+            screen.blit(logo_switch_on_ANNO_surface,(430, 690))
+        else:
+            screen.blit(logo_switch_off_ANNO_surface,(430, 690))
+        
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> UI-Hoan
+=======
+>>>>>>> UI
+>>>>>>> UI-Hoan
+>>>>>>> develop
         if is_combine_module == True:
             screen.blit(module_3_off_surface,(550, 650))
             screen.blit(module_combine_on_surface,(750, 650))
@@ -660,3 +937,17 @@ camera_1.release()
 camera_2.release()
 camera_3.release()
 pygame.quit()
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> UI-Hoan
+>>>>>>> UI
+=======
+
+>>>>>>> UI-Hoan
+>>>>>>> develop
