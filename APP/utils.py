@@ -14,6 +14,7 @@ from statistics import mode
 from deepSort.deep_sort.deep_sort import DeepSort
 from deepSort.deep_sort.sort.tracker import Tracker
 from PIL import Image
+<<<<<<< HEAD
 
 decide_var = 15
 
@@ -45,11 +46,19 @@ path_cls_bottle_RT = "model_set/classification/tensorRT/model_cls_bottle.trt"
 path_cls_label_RT = "model_set/classification/tensorRT/model_cls_label.trt"
 path_org_combine_RT = "model_set/classification/tensorRT/model_combine.trt"
 
+=======
+from config import *
+>>>>>>> UI-Hoan
 
 MODEL_BOTTLE_AI = YOLO(path_DetectMODEL)
 MODEL_WATER_LEVEL_AI = YOLO(path_DetectMODEL)
 MODEL_LABEL_AI = YOLO(path_DetectMODEL)
 
+<<<<<<< HEAD
+=======
+# MODEL_LABEL_AI = YOLO("yolov8m.pt")
+
+>>>>>>> UI-Hoan
 
 # Initialize DeepSORT tracker   
 deep_sort_weights = 'APP/deepSort/deep_sort/deep/checkpoint/ckpt.t7'
@@ -60,7 +69,11 @@ tracker = DeepSort(model_path=deep_sort_weights, max_age=70)
 
 classes_cls_bottle = { 0:'GOOD', 1:'ERROR'}
 input_names_bottle = ['x']
+<<<<<<< HEAD
 output_names_bottle = ['dense_22']
+=======
+output_names_bottle = [output_names_bottle_str]
+>>>>>>> UI-Hoan
 batch_bottle = 1
 net_bottle_RT = TensorrtBase(path_cls_bottle_RT,
                               input_names=input_names_bottle,
@@ -122,7 +135,11 @@ def predict_cnn_bottle(img):
 
 classes_cls_label = { 0:'GOOD', 1:'ERROR'}
 input_names_label = ['x']
+<<<<<<< HEAD
 output_names_label = ['dense_44']
+=======
+output_names_label = [output_names_label_str]
+>>>>>>> UI-Hoan
 batch_label = 1
 net_label_RT = TensorrtBase(path_cls_label_RT,
                               input_names=input_names_label,
@@ -185,7 +202,11 @@ def predict_cnn_label(img):
 
 classes_cls_combine = { 0:'GOOD', 1:'ERROR'}
 input_names_combine = ['x']
+<<<<<<< HEAD
 output_names_combine = ['dense_11']
+=======
+output_names_combine = [output_names_combine_str]
+>>>>>>> UI-Hoan
 batch_combine = 1
 net_combine_RT = TensorrtBase(path_org_combine_RT,
                               input_names=input_names_combine,
