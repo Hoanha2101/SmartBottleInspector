@@ -124,8 +124,8 @@ def build_and_save_engine(builder, network, config, engine_file_path):
         
 # Sử dụng các hàm
 def main():
-    onnx_file_path = "model_set/classification/onnx/model_combine.onnx"
-    engine_file_path = "model_set/classification/tensorRT/model_combine.trt"
+    onnx_file_path = "model_set/classification/onnx/model_cls_bottle_ResNet18_retrain_new_2.onnx"
+    engine_file_path = "model_set/classification/tensorRT/model_cls_bottle_ResNet18_retrain_new_2.trt"
     dynamic_shapes = {"input": ((1, 3, 270, 90), (2,  3, 270, 90), (5, 3, 270, 90))}
 
     builder, config = initialize_builder()
@@ -137,8 +137,8 @@ def main():
 # Fix batch_size
 def main_fixed():
     batch_size = 1
-    onnx_file_path = "model_set/classification/onnx/model_combine.onnx"
-    engine_file_path = "model_set/classification/tensorRT/model_combine.trt"
+    onnx_file_path = "model_set/classification/onnx/model_cls_bottle_VGG19_retrain_new1.onnx"
+    engine_file_path = "model_set/classification/tensorRT/model_cls_bottle_VGG19_retrain_new1.trt"
 
     builder, config = initialize_builder()
     network = parse_onnx_model_static(builder, onnx_file_path, batch_size=batch_size)

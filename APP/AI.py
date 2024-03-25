@@ -91,7 +91,7 @@ def CHECK_BOTTLE_AI(FRAME, start_time, is_ANNO, activate_optimize_RT):
     
     cv2.line(FRAME, (limit_point_1_frame_1, 0), (limit_point_1_frame_1, HEIGHT_FRAME_1), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_1, 0), (limit_point_2_frame_1, HEIGHT_FRAME_1), (255, 0, 0), thickness = 2)
-    cv2.line(FRAME, (limit_point_1_frame_1 - 150, 0), (limit_point_1_frame_1 - 150, HEIGHT_FRAME_1), (255,123,0), thickness = 2)
+    # cv2.line(FRAME, (limit_point_1_frame_1 - 150, 0), (limit_point_1_frame_1 - 150, HEIGHT_FRAME_1), (255,123,0), thickness = 2)
                 
     data_csv_ = pd.read_csv("data\data_bottle.csv")
     
@@ -286,7 +286,7 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
                     numerator = (coor_bottle[3] - coor_bottle[1])
                     denominator = (coor_water[3] - coor_water[1])
                 
-                    if 3.8 < (numerator/denominator) < 4.4:
+                    if 3.8 < (numerator/denominator) < 4.5:
                         list_water_good_f2.append(intermediate)
                         list_water_error_f2 = [item for item in list_water_error_f2 if item[1] != intermediate[1]]
                             
@@ -345,7 +345,7 @@ def CHECK_WATER_LEVEL_AI(FRAME, start_time, is_ANNO):
     
     cv2.line(FRAME, (limit_point_1_frame_2, 0), (limit_point_1_frame_2, HEIGHT_FRAME_2), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_2, 0), (limit_point_2_frame_2, HEIGHT_FRAME_2), (255, 0, 0), thickness = 2)
-    cv2.line(FRAME, (limit_point_1_frame_2 - 150, 0), (limit_point_1_frame_2 - 150, HEIGHT_FRAME_2), (255,123,0), thickness = 2)
+    # cv2.line(FRAME, (limit_point_1_frame_2 - 150, 0), (limit_point_1_frame_2 - 150, HEIGHT_FRAME_2), (255,123,0), thickness = 2)
 # Save information into file csv and 
     ADD_DATA_CSV_WATER_LEVEL(dict_info, limit_point_1_frame_2, limit_point_2_frame_2)
     
@@ -612,7 +612,7 @@ def CHECK_LABEL_AI(FRAME, start_time,is_ANNO ,activate_optimize_RT):
     
     cv2.line(FRAME, (limit_point_1_frame_3, 0), (limit_point_1_frame_3, HEIGHT_FRAME_3), (255, 0, 0), thickness = 2)
     cv2.line(FRAME, (limit_point_2_frame_3, 0), (limit_point_2_frame_3, HEIGHT_FRAME_3), (255, 0, 0), thickness = 2)
-    cv2.line(FRAME, (limit_point_1_frame_3 - 150, 0), (limit_point_1_frame_3 - 150, HEIGHT_FRAME_3), (255,123,0), thickness = 2)
+    # cv2.line(FRAME, (limit_point_1_frame_3 - 150, 0), (limit_point_1_frame_3 - 150, HEIGHT_FRAME_3), (255,123,0), thickness = 2)
                 
     data_csv_ = pd.read_csv("data\data_label.csv")
     

@@ -1,7 +1,7 @@
 from library import *
 from AI import CHECK_BOTTLE_AI, CHECK_WATER_LEVEL_AI, CHECK_LABEL_AI, AI_COMBINE
 from utils import *
-from __camera__ import camera_1, camera_2, camera_3
+from __camera__ import camera_1, camera_2, camera_3, camera_1_video, camera_2_video, camera_3_video
 
 CLEAN_CSV_BOTTLE()
 CLEAN_CSV_WATER_LEVEL()
@@ -30,6 +30,11 @@ border_radius_button = 30
 logo_fpt_path = os.path.join("APP/image_set/logofptuniversity.png")
 logo_fpt_surface = pygame.image.load(logo_fpt_path)
 logo_fpt_surface = pygame.transform.scale(logo_fpt_surface, (150, 58))
+
+#Logo pepsi))
+logo_pepsi_path = os.path.join("APP/image_set/pepsi_logo.png")
+logo_pepsi_surface = pygame.image.load(logo_pepsi_path)
+logo_pepsi_surface = pygame.transform.scale(logo_pepsi_surface, (93, 75))
 
 #Logo product - group ))
 logo_group_path = os.path.join("APP/image_set/group.png")
@@ -176,6 +181,18 @@ demo_3_rect = pygame.Rect(840, 720, 40, 40)
 demo_3_color = (128,0,0)
 demo_3_text = font.render("3", True, (255, 255, 255))
 text_demo_3_rect = demo_3_text.get_rect(center=demo_3_rect.center)
+
+# Button demo video on
+demo_video_path_on = os.path.join("APP/image_set/demo_video_on.png")
+demo_video_surface_on = pygame.image.load(demo_video_path_on)
+demo_video_surface_on = pygame.transform.scale(demo_video_surface_on, (40, 40))
+demo_video_on_clickable_area = pygame.Rect(20, screen_height - 170, 40, 40)
+
+# Button demo video off
+demo_video_path_off = os.path.join("APP/image_set/demo_video_off.png")
+demo_video_surface_off = pygame.image.load(demo_video_path_off)
+demo_video_surface_off = pygame.transform.scale(demo_video_surface_off, (40, 40))
+demo_video_off_clickable_area = pygame.Rect(20, screen_height - 170, 40, 40)
 
 "--------------------------------------------------"
 
@@ -339,6 +356,7 @@ is_setting_icon = True
 is_ANNO = False
 
 is_demo_module = 1
+is_demo_video = 0
 
 # Phần thân chính chạy app-------------------------------------------------------------------------------------------------------------------|
 
@@ -392,6 +410,14 @@ while running:
                             button_start_color = (255, 0, 0)  # Màu đỏ
                             button_start_text = font.render("  END", True, (255, 255, 255))
                             status_light_color_combine = (0, 255, 0)
+            
+            if demo_video_on_clickable_area.collidepoint(event.pos):
+                is_demo_video = not is_demo_video
+                
+                if is_demo_video:
+                    camera_1_video.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                    camera_2_video.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                    camera_3_video.set(cv2.CAP_PROP_POS_FRAMES, 0)
             
             if is_square_setting_visible == True:
                 if demo_1_rect.collidepoint(event.pos):
@@ -501,38 +527,55 @@ while running:
             pygame.draw.rect(screen, (255,0,0), switch_off_rect_box_camera_3,3)
         pygame.draw.rect(screen, status_light_color_camera_3, status_light_rect_camera_3, border_radius = 30)
 
-        if is_demo_module == 1:
+        if is_demo_video:
             # Bắt đầu tính toán thời gian để đo FPS
             start_time_1 = time.time()
-            ret_1, frame_1 = camera_1.read()  # Camera frame to Check bottle
+            ret_1, frame_1 = camera_1_video.read()  # Camera frame to Check bottle
+            ret_2, frame_2 = camera_2_video.read()  # Camera frame to Check water level
+            ret_3, frame_3 = camera_3_video.read()  # Camera frame to Check label
             
-            start_time_1 = time.time()
-            ret_2, frame_2 = camera_2.read()  # Camera frame to Check water level
-            
-            start_time_3 = time.time()
-            ret_3, frame_3 = camera_3.read()  # Camera frame to Check label
-            
-        if is_demo_module == 2:
-            
-            start_time_1 = time.time()
-            ret_1, frame_1 = camera_2.read()
-            
-            start_time_1 = time.time()
-            ret_2, frame_2 = camera_1.read() 
-            
-            start_time_3 = time.time()
-            ret_3, frame_3 = camera_3.read()  
-            
-        if is_demo_module == 3:
-            
-            start_time_1 = time.time()
-            ret_1, frame_1 = camera_2.read()
-            
-            start_time_1 = time.time()
-            ret_2, frame_2 = camera_3.read()
-            
-            start_time_3 = time.time()
-            ret_3, frame_3 = camera_1.read()
+            if not ret_1:
+                camera_1_video.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                continue
+            if not ret_2:
+                camera_2_video.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                continue
+            if not ret_3:
+                camera_3_video.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                continue
+        else:
+            if is_demo_module == 1:
+                # Bắt đầu tính toán thời gian để đo FPS
+                start_time_1 = time.time()
+                ret_1, frame_1 = camera_1.read()  # Camera frame to Check bottle
+                
+                # start_time_2 = time.time()
+                ret_2, frame_2 = camera_2.read()  # Camera frame to Check water level
+                
+                # start_time_3 = time.time()
+                ret_3, frame_3 = camera_3.read()  # Camera frame to Check label
+                
+            if is_demo_module == 2:
+                
+                start_time_1 = time.time()
+                ret_1, frame_1 = camera_2.read()
+                
+                # start_time_2 = time.time()
+                ret_2, frame_2 = camera_1.read() 
+                
+                # start_time_3 = time.time()
+                ret_3, frame_3 = camera_3.read()  
+                
+            if is_demo_module == 3:
+                
+                start_time_1 = time.time()
+                ret_1, frame_1 = camera_2.read()
+                
+                # start_time_2 = time.time()
+                ret_2, frame_2 = camera_3.read()
+                
+                # start_time_3 = time.time()
+                ret_3, frame_3 = camera_1.read()
 
     # Quản lí frame 1 ---------------------------------------------------------------------------------------         
         if ret_1:
@@ -568,6 +611,7 @@ while running:
     
     # Quản lí frame 2 ---------------------------------------------------------------------------------------
         if ret_2:
+            
             # The video uses BGR colors and PyGame needs RGB
             frame_2 = cv2.cvtColor(frame_2, cv2.COLOR_BGR2RGB)
             
@@ -603,7 +647,7 @@ while running:
             
             # Pass the frame and the AI function to output a new frame containing predictions about the object in the frame
             if ACTIVE_AI_camera_3 == True:
-                frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_3, is_ANNO, activate_optimize_RT)
+                frame_3, ID_DEFAULT_3, ERROR_DEFAULT_3 = CHECK_LABEL_AI(frame_3, start_time_1, is_ANNO, activate_optimize_RT)
                 if (ID_DEFAULT_3 != "") and (ERROR_DEFAULT_3 != ""):
                     id_info_error_text_3 = font.render(str(ID_DEFAULT_3), True, id_info_color_3)
                     if ERROR_DEFAULT_3 == "GOOD":
@@ -619,6 +663,8 @@ while running:
             frame_3 = cv2.flip(frame_3, 1)
             frame_3 = cv2.rotate(frame_3, cv2.ROTATE_90_COUNTERCLOCKWISE)
             frame_3 = pygame.surfarray.make_surface(frame_3)
+        
+            
         
         pygame.draw.rect(screen, (255,255,255), square_rect_3)
         pygame.draw.rect(screen, (0,0,128), square_rect_3, 3)
@@ -704,10 +750,15 @@ while running:
             screen.blit(logo_anomaly_off_surface,(900, screen_height - 102))
             screen.blit(anomaly_logo_switch_off_surface,(820, screen_height - 110))
     
-    screen.blit(exit_surface,(20, screen_height - 70))
+    if is_demo_video == 1:
+        screen.blit(demo_video_surface_on,(20, screen_height - 170))
+    else:
+        screen.blit(demo_video_surface_off,(20, screen_height - 170))
     
+    screen.blit(exit_surface,(20, screen_height - 70))
     screen.blit(logo_fpt_surface,(120, screen_height - 100))
     screen.blit(logo_group_surface,(280, screen_height - 190))
+    screen.blit(logo_pepsi_surface,(540, screen_height - 110))
     
     if is_started == False:
         screen.blit(setting_surface,(20, screen_height - 120))
@@ -738,7 +789,7 @@ while running:
             demo_1_color = (128,0,0)
             demo_2_color = (128,0,0)
             demo_3_color = (0,128,0)
-            
+        
         pygame.draw.rect(screen, demo_1_color, demo_1_rect, border_radius= 30)
         screen.blit(demo_1_text, text_demo_1_rect)
         
@@ -768,4 +819,3 @@ camera_1.release()
 camera_2.release()
 camera_3.release()
 pygame.quit()
-

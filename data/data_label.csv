@@ -1,1 +1,6 @@
 id,status
+1.0,ERROR
+2.0,ERROR
+3.0,GOOD
+10.0,ERROR
+13.0,ERROR
