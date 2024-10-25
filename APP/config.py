@@ -22,7 +22,8 @@ class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'tra
 """------------------------------Yolo Model for modules-----------------------------------"""
 
 # Path YOLOv8 model
-path_DetectMODEL = "model_set/detect/YOLOv8_combine.pt"
+# path_DetectMODEL = "model_set/detect/YOLOv8_combine.pt"
+path_DetectMODEL = "model_set/detect/best.engine"
 
 # Org model
 path_cls_bottle_org = "model_set/classification/org/model_cls_bottle_v2.h5"

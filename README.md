@@ -1,7 +1,7 @@
 # **Welcome to GROUP 3 💞**
-## **----- DETECTIVE - Advanced Quality Control System for Bottled Water Production ------**
+# DETECTIVE - Advanced Quality Control System for Bottled Water Production
 
-# ***Smart Bottle Inspector*
+# *Smart Bottle Inspector*
 
 ## **Overview**
 
@@ -52,7 +52,64 @@ Submit a pull request.
 
 + Email: khaihoan.ai@gmail.com
 + Thank you for your interest in DetecTive - Making bottled water production error!
+## Run app
 
+Download our [trained models](https://drive.google.com/drive/folders/11mO-hAM_6S8XBueTE16H98koMMrW6ExI?usp=sharing)
+
+Download our [video_demo](https://drive.google.com/drive/folders/11mO-hAM_6S8XBueTE16H98koMMrW6ExI?usp=sharing)
+
+*folder map*
+
+```bash
+\
+    |---APP
+    |---create_sample
+    |---data
+    |---data_mask
+    |---illustration
+    |---model_set
+    |---TensorRT
+    |---video_demo
+    |---README.md
+```
+
+*Note*: When deploying tensorRT, there will be different plans for each different type of Nvidia GPU.
+
+We are using `Nvidia GPU 3050`
+
+Please use your own TensorRT plan implementation code.
+
+```bash
+\model_set
+    |---classification
+    |    |---onnx
+    |    |   |---model_cls_bottle_v2.onnx
+    |    |   |---model_cls_label.onnx
+    |    |---org
+    |    |   |---model_cls_bottle_v2.h5
+    |    |   |---model_cls_label.h5
+    |    |---tensorRT
+    |    |   |---model_cls_bottle_v2.trt
+    |    |   |---model_cls_label.trt
+    |---detect
+    |    |   |---best.engine
+    |    |   |---best.onnx
+    |    |   |---best.pt
+```
+
+Video
+
+```bash
+\video_demo
+    |---bottle.avi
+    |---label.avi
+    |---wl.avi
+```
+
+Python version 3.9
+```bash
+python __app__.py
+```
 
 ## **Architecture, way of doing things**
 
@@ -104,11 +161,16 @@ We perform labeling with 2 sets of photos: good and error
 
 + Number of classes in training set:
 
-<img src="illustration\visual_bottle_1.jpg">
+```bash
+Train set: 1121 images
+Test set: 284 images
+```
 
-+ Train set & Test set:
-
-<img src="illustration\visual_bottle_2.jpg">
+```bash
+Train set:
+    + good: 527 images
+    + error: 594 images
+```
 
 #### **Training - Evaluation**
 
@@ -124,6 +186,7 @@ We perform labeling with 2 sets of photos: good and error
 
 ### **WATER LEVEL CHECK**
 Just detect two objects with the trained yolo model, then use the algorithm to manage which water level range belongs to which water bottle, then calculate the height threshold.
+
 
 <img src="illustration/tech_water_level.png">
 
@@ -141,12 +204,22 @@ Or use Yolo model trained with 2 class: bottle, water level
 
 We have a data set with angles of good labels and error labels.
 
-+ Train set:
-<img src="illustration/visual_label_1.png">
-<img src="illustration/visual_label_2.jpg">
+#### Train set:
 
-+ Test set:
-<img src="illustration/visual_test_label.png">
+<img src="illustration/visual_label_1.png">
+
+
+
+```bash
+- Total: 2980 images
+    + good: 1501 images
+    + error: 1479 images
+```
+
+#### Test set:
+```bash
+-Total: 400 images
+```
 
 #### **Training - Evaluation**
 
@@ -160,9 +233,20 @@ We have a data set with angles of good labels and error labels.
 
 ### **OPTIMIZER**
 
-<img src="illustration\optimize1.png">
+*With our project*
+
+```bash
+TensorFlow FP32 ->  TensorRT Plan FP32
+```
+*Option  - More speed improvements*
+
+```bash
+Yolo FP32 -> TensorRT Plan FP16
+TensorFlow FP32 ->  TensorRT Plan FP16 (INT8)
+```
 
 <img src="illustration\optimize2.png">
 
+Reference:[TensorRT](https://github.com/NVIDIA/TensorRT)
 
-
+### Thank you
