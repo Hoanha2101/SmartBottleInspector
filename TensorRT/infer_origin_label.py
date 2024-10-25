@@ -45,7 +45,6 @@ path_error = "TensorRT/images/label_pepsi/error"
 path_good = "TensorRT/images/label_pepsi/good"
 
 
-
 results_e = []
 results_g = []
 

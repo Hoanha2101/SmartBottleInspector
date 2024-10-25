@@ -23,16 +23,14 @@ class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'tra
 
 # Path YOLOv8 model
 # path_DetectMODEL = "model_set/detect/YOLOv8_combine.pt"
-path_DetectMODEL = "model_set/detect/best.pt"
+path_DetectMODEL = "model_set/detect/best.engine"
 
 # Org model
-# path_cls_bottle_org = "model_set/classification/org/model_cls_bottle.h5"
 path_cls_bottle_org = "model_set/classification/org/model_cls_bottle_v2.h5"
 path_cls_label_org = "model_set/classification/org/model_cls_label.h5"
 path_cls_combine_org = "model_set/classification/org/model_combine.h5"
 
 # TensorRT model
-# path_cls_bottle_RT = "model_set/classification/tensorRT/model_cls_bottle.trt"
 path_cls_bottle_RT = "model_set/classification/tensorRT/model_cls_bottle_v2.trt"
 path_cls_label_RT = "model_set/classification/tensorRT/model_cls_label.trt"
 path_org_combine_RT = "model_set/classification/tensorRT/model_combine.trt"
