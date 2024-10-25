@@ -92,9 +92,9 @@ Please use your own TensorRT plan implementation code.
     |    |   |---model_cls_bottle_v2.trt
     |    |   |---model_cls_label.trt
     |---detect
-    |    |   |---best.engine
-    |    |   |---best.onnx
-    |    |   |---best.pt
+    |    |---best.engine
+    |    |---best.onnx
+    |    |---best.pt
 ```
 
 Video
