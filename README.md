@@ -54,9 +54,9 @@ Submit a pull request.
 + Thank you for your interest in DetecTive - Making bottled water production error!
 ## Run app
 
-Download our [trained models](https://drive.google.com/drive/folders/11mO-hAM_6S8XBueTE16H98koMMrW6ExI?usp=sharing)
+<!-- Download our [trained models](https://drive.google.com/drive/folders/11mO-hAM_6S8XBueTE16H98koMMrW6ExI?usp=sharing)
 
-Download our [video_demo](https://drive.google.com/drive/folders/11mO-hAM_6S8XBueTE16H98koMMrW6ExI?usp=sharing)
+Download our [video_demo](https://drive.google.com/drive/folders/11mO-hAM_6S8XBueTE16H98koMMrW6ExI?usp=sharing) -->
 
 *folder map*
 
